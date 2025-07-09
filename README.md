@@ -4,17 +4,7 @@
 A Flask-based web app that tracks the price of any Amazon product and sends an email alert when the price drops below your desired target.
 
 ## 🔗 Live Demo
-🚀 [Check Live App](https://your-live-link-here.com) *(Update with your actual deployed link, e.g., Replit, Render, Vercel)*
-
----
-
-## 📸 Screenshots
-
-| Home Page |
-|-----------|
-| ![Screenshot](https://your-screenshot-url.com) |
-
----
+🚀 [Check Live App]([https://your-live-link-here.com](https://0f08efef-e512-45d6-93f0-2a08dd9eddeb-00-3a8qq6mmgstfm.riker.replit.dev/)) 
 
 ## 🧠 Features
 
