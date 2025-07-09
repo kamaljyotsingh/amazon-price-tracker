@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Amazon Price Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;600;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #18181b 0%, #1e293b 100%);
+            font-family: 'Montserrat', Arial, sans-serif;
+            color: #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-top: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #facc15;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 24px rgba(250,204,21,0.10);
+        }
+        .subheader {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #a5b4fc;
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5em;
+        }
+        .subheader .icon {
+            font-size: 1.4em;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2em;
+            align-items: center;
+            width: 100%;
+            max-width: 420px;
+        }
+        label {
+            font-weight: 600;
+            color: #f3f4f6;
+            margin-bottom: 0.2em;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 0.9em;
+            border: 1.5px solid #334155;
+            border-radius: 10px;
+            font-size: 1em;
+            background: #0f172a;
+            color: #f3f4f6;
+            width: 100%;
+            transition: border 0.2s, background 0.2s;
+        }
+        input[type="text"]:focus, input[type="number"]:focus {
+            border: 1.5px solid #facc15;
+            outline: none;
+            background: #1e293b;
+        }
+        button[type="submit"] {
+            background: linear-gradient(90deg, #facc15 0%, #6366f1 100%);
+            color: #18181b;
+            border: none;
+            border-radius: 10px;
+            padding: 1em 0;
+            font-size: 1.15em;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 0.5em;
+            box-shadow: 0 2px 8px rgba(250,204,21,0.10);
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        button[type="submit"]:hover {
+            background: linear-gradient(90deg, #6366f1 0%, #facc15 100%);
+            color: #fff;
+            transform: translateY(-2px) scale(1.03);
+        }
+        .result {
+            margin-top: 2.5em;
+            background: rgba(30,41,59,0.85);
+            border-radius: 14px;
+            padding: 1.5em 1.2em;
+            box-shadow: 0 2px 10px rgba(99,102,241,0.09);
+            border: 1.2px solid #334155;
+            max-width: 420px;
+            width: 100%;
+        }
+        .result h2 {
+            color: #facc15;
+            margin-bottom: 0.5em;
+            font-size: 1.25em;
+        }
+        .result p {
+            color: #f3f4f6;
+            margin: 0.3em 0;
+        }
+        .error {
+            color: #f87171;
+            font-weight: 600;
+            margin-top: 1em;
+        }
+        hr.divider {
+            border: none;
+            border-top: 1.5px dashed #6366f1;
+            margin: 1.1em 0 1.2em 0;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.1rem;
+            }
+            .result, form {
+                max-width: 98vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Amazon Price Tracker</h1>
+    <div class="subheader"><span class="icon">🎯</span>Hunt your product and buy at the cheapest rates!</div>
+    <form method="post">
+        <label for="product_url">Amazon Product URL:</label>
+        <input type="text" name="product_url" id="product_url" required>
+
+        <label for="desired_price">Desired Price (INR):</label>
+        <input type="number" name="desired_price" id="desired_price" required>
+
+        <button type="submit">Track</button>
+    </form>
+
+    {% if product_data %}
+        <div class="result">
+        <hr class="divider">
+        {% if product_data.error %}
+            <p class="error"><strong>Error:</strong> {{ product_data.error }}</p>
+        {% else %}
+            <h2>{{ product_data.title }}</h2>
+            <p>Current Price: ₹{{ product_data.current_price }}</p>
+            <p>Your Desired Price: ₹{{ product_data.desired_price }}</p>
+            <p>Status: <strong>{{ product_data.status }}</strong></p>
+        {% endif %}
+        </div>
+    {% endif %}
+</body>
+</html>
